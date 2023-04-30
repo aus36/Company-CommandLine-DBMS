@@ -1,4 +1,4 @@
-﻿using System;
+﻿//Class for creating tables in the DB and connecting using the connection string
 using CSCI428_SQLProject.Models;
 using Microsoft.EntityFrameworkCore;
 

@@ -19,9 +19,9 @@ internal class Add : AppCommand
 
     public override bool Validate(string[] args)
     {
-        if (true /*validation logic here*/)
+        if (args.Length != 3)
         {
-            Console.WriteLine("Invalid arguments.");
+            Console.WriteLine("Invalid number of arguments.");
             return false;
         }
         return true;

@@ -1,8 +1,9 @@
-﻿using CSCI428_SQLProject.Commands;
+﻿//Class for handling input and executing commands
+using CSCI428_SQLProject.Commands;
 
 namespace CSCI428_SQLProject;
- //Class for handling all input from console (contains all functionality for console commands)
-public class AppController 
+
+public class AppController
 {
 	//Properties
 	public bool IsDone { get; set; }
@@ -10,15 +11,15 @@ public class AppController
 	//Default Constructor
 	public AppController()
 	{
-		this.IsDone = false;
+        IsDone = false;
 	}
 
 	//Methods
 	public void Start()
 	{
 		string input;
-        Console.WriteLine("Welcome to the Fuck You industries DBMS portal!");
-		Console.WriteLine("===============================================\n");
+        Console.WriteLine("Welcome to the Contoso Industries DBMS portal!");
+		Console.WriteLine("==============================================\n");
 		while (true)
 		{
 			//Take input and retry until valid input
@@ -34,11 +35,11 @@ public class AppController
                 }
                 else //Parse and execute command from input
                 {
-                    this.IsDone = HandleInput(input);
+                    IsDone = HandleInput(input);
 					break;
                 }
             }
-            if (this.IsDone)
+            if (IsDone)
             {
                 break;
             }
@@ -68,11 +69,29 @@ public class AppController
 				Console.WriteLine("This command is not yet implemented.");
 				return false;
 
+            case "LIST":
+                List list = new();
+                list.Initialize(input.Split(" "));
+                list.Execute();
+                return false;
+
+            case "ADD":
+                Add add = new();
+                add.Initialize(input.Split(" "));
+                add.Execute();
+                return false;
+
+            case "UPDATE":
+                Update update = new();
+                update.Initialize(input.Split(" "));
+                update.Execute();
+                return false;
+
             case "DELETE":
                 Delete delete = new();
-				delete.Initialize(input.Split(" "));
-				delete.Execute();
-				return false;
+                delete.Initialize(input.Split(" "));
+                delete.Execute();
+                return false;
 
             case "HELP":
                 PrintHelpMenu();
@@ -85,14 +104,28 @@ public class AppController
 
     public static void PrintHelpMenu()
     {
-        Console.WriteLine("                 HELP MENU                   ");
-        Console.WriteLine("=============================================");
-        Console.WriteLine("LIST - Lists all records in the database.");
-        Console.WriteLine("ADD - Adds a new record to the database.");
-        Console.WriteLine("UPDATE - Updates a record in the database.");
-        Console.WriteLine("DELETE - Deletes a record from the database.");
+        Console.WriteLine("                                                  HELP MENU                                                     ");
+        Console.WriteLine("================================================================================================================");
+        Console.WriteLine("LIST [type] [page] [count] [orderby] [direction] - Lists person records in the database.");
+        Console.WriteLine("\tArgs:");
+        Console.WriteLine("\t\ttype - Either ALL or (Retiree, Employee, PreHire) - Lists all records or records of a specific type");
+        Console.WriteLine("\t\tpage - (int) - page number");
+        Console.WriteLine("\t\tcount - (int) - number of records per page");
+        Console.WriteLine("\t\torderby - (string) field - field to sort the data by");
+        Console.WriteLine("\t\tdirection - (string) Ascending or Descending - determines sort direction\n");
+        Console.WriteLine("ADD [data] - Adds a new record to the database.");
+        Console.WriteLine("\tArgs:");
+        Console.WriteLine("\t\tdata - (field:value array) ex: ID 245 FirstName Austin LastName Hale - determines data for new record\n");
+        Console.WriteLine("UPDATE [personID] [data] - Updates a record in the database.");
+        Console.WriteLine("\tArgs:");
+        Console.WriteLine("\t\tpersonID - (int) - The ID number of the person record to update");
+        Console.WriteLine("\t\tdata - (field:value array) ex: ID 245 FirstName Austin LastName Hale - determines data for the record\n");
+        Console.WriteLine("DELETE [personID or *] - Deletes a record from the database.");
+        Console.WriteLine("\tArgs:");
+        Console.WriteLine("\t\tpersonID (int) - Deletes the record of the person with this ID");
+        Console.WriteLine("\t\t* - Deletes all person records in the DB\n");
+        Console.WriteLine("HELP - Displays command menu.\n");
         Console.WriteLine("QUIT - Exits the program.");
-        Console.WriteLine("HELP - Displays command menu.");
-        Console.WriteLine("=============================================");
+        Console.WriteLine("=================================================================================================================");
     }
 }
