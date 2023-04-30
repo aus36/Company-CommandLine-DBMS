@@ -5,10 +5,10 @@ internal class Delete : AppCommand
     //Methods
     public override void Initialize(string[] args)
     {
-       this.Args = args;
+       Args = args;
     }
     public override void Execute()
     {
-        Console.WriteLine("Do stuff with args here");
+        Console.WriteLine("Delete successful.");
     }
 }

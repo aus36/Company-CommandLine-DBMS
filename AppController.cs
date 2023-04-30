@@ -17,46 +17,64 @@ public class AppController
 	public void Start()
 	{
 		string input;
-		Console.WriteLine("Welcome to the Fuck You industries DBMS portal!");
+        bool done = false;
+        Console.WriteLine("Welcome to the Fuck You industries DBMS portal!");
 		Console.WriteLine("===============================================\n");
-		while (!this.IsDone)
+		while (true)
 		{
 			//Take input and retry until valid input
 			bool validInput = false;
 			while (!validInput)
 			{
 				Console.WriteLine("Enter a command: ");
-                    input = Console.ReadLine()!;
-                    validInput = ValidateInput(input);
-                    if (!validInput)
-                    {
-                        Console.WriteLine("Invalid input. Please try again or enter HELP to see the available commands.");
-                    }
+                input = Console.ReadLine()!;
+                validInput = ValidateInput(input);
+                if (!validInput)
+                {
+                    Console.WriteLine("Invalid input. Please try again or enter HELP to see the available commands.");
                 }
-
-			//Parse and execute command from input
-			this.IsDone = true; //DUETO: remove this later when commands are done
-		}
+                else //Parse and execute command from input
+                {
+                    done = HandleInput(input);
+					break;
+                }
+            }
+            if (done)
+            {
+                break;
+            }
+        }
+		Console.WriteLine("\nThank you for using our system! Have a great day.");
 	}
 
 	public static bool ValidateInput(string input) //Checks to see if entered string is valid input
 	{
-		switch (input.Split(" ")[0])
-		{
-			default: 
+        return input.Split(" ")[0] switch
+        {
+            ("LIST") => true,
+            ("ADD") => true,
+            ("UPDATE") => true,
+            ("DELETE") => true,
+            _ => false,
+        };
+    }
+
+    public static bool HandleInput(string input) //Checks to see if entered string is valid input
+    {
+        switch (input.Split(" ")[0])
+        {
+			default:
+				Console.WriteLine("This command is not yet implemented.");
 				return false;
 
-			case ("LIST"):
+            case "DELETE":
+                Delete delete = new();
+				delete.Initialize(input.Split(" "));
+				delete.Execute();
+				return false;
+
+			case "QUIT":
 				return true;
-
-            case ("ADD"):
-                return true;
-
-            case ("UPDATE"):
-                return true;
-
-            case ("DELETE"):
-                return true;
         }
-	}
+    }
 }

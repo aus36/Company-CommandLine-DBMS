@@ -6,7 +6,10 @@
         public string[]? Args { get; set; }
 
         //Methods
-        public abstract void Initialize(string[] args);
-        public abstract void Execute();
+        public abstract void Initialize(string[] args); //Initializes command with arguments
+
+        public abstract void Execute(); //Executes command
+
+        public abstract void Validate(); //Validates input to ensure args are correct
     }
 }
