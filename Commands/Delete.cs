@@ -19,7 +19,7 @@ internal class Delete : AppCommand
 
     public override bool Validate(string[] args)
     {
-        if (args.Length != 2 || (args[1] != "*" && args[1] != "") )
+        if (args.Length != 2 /* || (args[1] != "*" && args[1] != "check for ID stuff here") */ )
         {
             Console.WriteLine("Invalid arguments.");
             return false;

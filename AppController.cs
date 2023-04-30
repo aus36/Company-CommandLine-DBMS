@@ -25,9 +25,9 @@ public class AppController
 			bool validInput;
 			while (true)
 			{
-				Console.WriteLine("Enter a command: ");
+				Console.WriteLine("\nEnter a command: ");
                 input = Console.ReadLine()!;
-                validInput = ValidateInput(input);
+                validInput = ValidateCommand(input);
                 if (!validInput)
                 {
                     Console.WriteLine("Invalid input. Please try again or enter HELP to see the available commands.");
@@ -46,7 +46,7 @@ public class AppController
 		Console.WriteLine("\nThank you for using our system! Have a great day.");
 	}
 
-	public static bool ValidateInput(string input) //Checks to see if entered string is valid input
+	public static bool ValidateCommand(string input) //Checks to see if entered string is valid input
 	{
         return input.Split(" ")[0] switch
         {
@@ -54,6 +54,8 @@ public class AppController
             ("ADD") => true,
             ("UPDATE") => true,
             ("DELETE") => true,
+            ("QUIT") => true,
+            ("HELP") => true,
             _ => false,
         };
     }
@@ -72,8 +74,25 @@ public class AppController
 				delete.Execute();
 				return false;
 
+            case "HELP":
+                PrintHelpMenu();
+                return false;
+
 			case "QUIT":
 				return true;
         }
+    }
+
+    public static void PrintHelpMenu()
+    {
+        Console.WriteLine("                 HELP MENU                   ");
+        Console.WriteLine("=============================================");
+        Console.WriteLine("LIST - Lists all records in the database.");
+        Console.WriteLine("ADD - Adds a new record to the database.");
+        Console.WriteLine("UPDATE - Updates a record in the database.");
+        Console.WriteLine("DELETE - Deletes a record from the database.");
+        Console.WriteLine("QUIT - Exits the program.");
+        Console.WriteLine("HELP - Displays command menu.");
+        Console.WriteLine("=============================================");
     }
 }
