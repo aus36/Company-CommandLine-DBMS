@@ -1,4 +1,4 @@
-﻿using System;
+﻿//Table for PreHire, which contains the OfferExtendedDate, OfferAcceptedDate, and PersonID
 using System.ComponentModel.DataAnnotations;
 
 namespace CSCI428_SQLProject.Models

@@ -1,4 +1,5 @@
-﻿using System;
+﻿//If run in the Package Manager Console, this will create the database and tables for the project.
+using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable

@@ -15,7 +15,7 @@ public class AppController
 	}
 
 	//Methods
-	public void Start()
+	public void Start() //Starts the program and controls flow
 	{
 		string input;
         Console.WriteLine("Welcome to the Contoso Industries DBMS portal!");

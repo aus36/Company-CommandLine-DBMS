@@ -1,4 +1,4 @@
-﻿using System;
+﻿//Table for Person, which contains the ID, Type, WorkerType, FirstName, LastName, and EmploymentDate
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CSCI428_SQLProject.Models

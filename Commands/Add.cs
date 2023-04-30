@@ -6,6 +6,7 @@ internal class Add : AppCommand
     public override void Initialize(string[] args)
     {
         Args = args;
+        ArgsObject = new Arguments(args);
     }
     public override void Execute()
     {
@@ -13,7 +14,7 @@ internal class Add : AppCommand
         {
             return;
         }
-        DatabaseCommand.ADD(Args!);
+        DatabaseCommand.ADD(ArgsObject!);
         Console.WriteLine("Add successful.");
     }
 

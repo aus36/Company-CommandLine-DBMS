@@ -1,4 +1,4 @@
-﻿using System;
+﻿//Table for PersonType, which contains 3 different types of people: PreHire, Employee, and Retiree
 using System.ComponentModel.DataAnnotations;
 
 namespace CSCI428_SQLProject.Models

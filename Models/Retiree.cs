@@ -1,4 +1,4 @@
-﻿using System;
+﻿//Table for Retiree, which contains the RetirementDate, and PersonID
 using System.ComponentModel.DataAnnotations;
 
 namespace CSCI428_SQLProject.Models

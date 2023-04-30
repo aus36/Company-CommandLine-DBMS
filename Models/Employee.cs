@@ -1,4 +1,4 @@
-﻿using System;
+﻿//Table for Employee, which contains the JobTitle, MonthlySalary, and PersonID
 using System.ComponentModel.DataAnnotations;
 
 namespace CSCI428_SQLProject.Models
