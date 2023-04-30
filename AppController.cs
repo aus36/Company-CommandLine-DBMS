@@ -17,14 +17,13 @@ public class AppController
 	public void Start()
 	{
 		string input;
-        bool done = false;
         Console.WriteLine("Welcome to the Fuck You industries DBMS portal!");
 		Console.WriteLine("===============================================\n");
 		while (true)
 		{
 			//Take input and retry until valid input
-			bool validInput = false;
-			while (!validInput)
+			bool validInput;
+			while (true)
 			{
 				Console.WriteLine("Enter a command: ");
                 input = Console.ReadLine()!;
@@ -35,11 +34,11 @@ public class AppController
                 }
                 else //Parse and execute command from input
                 {
-                    done = HandleInput(input);
+                    this.IsDone = HandleInput(input);
 					break;
                 }
             }
-            if (done)
+            if (this.IsDone)
             {
                 break;
             }

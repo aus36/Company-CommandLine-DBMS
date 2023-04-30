@@ -10,6 +10,6 @@
 
         public abstract void Execute(); //Executes command
 
-        public abstract void Validate(); //Validates input to ensure args are correct
+        public abstract bool Validate(string[] args); //Validates input to ensure args are correct
     }
 }
