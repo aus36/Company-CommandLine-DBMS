@@ -29,7 +29,46 @@ internal class DatabaseCommand //Class for handling actual interaction with data
         };
         DB.Person.Add(person);
         DB.SaveChanges();
-    }
+        switch (args.Data!["WorkerType"])
+        {
+            case ("PreHire"):
+                Person p = DB.Person.Single(Person => Person.FirstName == args.Data!["FirstName"]); //Retrieve newly created record from DB
+                PreHire preHire = new()
+                {
+                    OfferExtendedDate = DateTime.Parse(args.Data!["OfferExtendedDate"]),
+                    OfferAcceptedDate = DateTime.Parse(args.Data!["OfferAcceptedDate"]),
+                    Person = p,
+                };
+                DB.PreHire.Add(preHire);
+                DB.SaveChanges();
+                break;
+
+            case ("Employee"):
+                Person p2 = DB.Person.Single(Person => Person.FirstName == args.Data!["FirstName"]);
+                
+                Employee employee = new()
+                {
+                    JobTitle = args.Data!["JobTitle"],
+                    MonthlySalary = float.Parse(args.Data!["MonthlySalary"]),
+                    Person = p2,
+                };
+                DB.Employees.Add(employee);
+                DB.SaveChanges();
+                break;
+
+            case ("Retiree"):
+                Person p3 = DB.Person.Single(Person => Person.FirstName == args.Data!["FirstName"]);
+                Retiree retiree = new()
+                {
+                    RetirementDate = DateTime.Parse(args.Data!["RetirementDate"]),
+                    RetirementProgram = args.Data!["RetirementProgram"],
+                    Person = p3,
+                };
+                DB.Retiree.Add(retiree);
+                DB.SaveChanges();
+                break;
+        }
+}
 
     public static void UPDATE(Arguments args)
     {
