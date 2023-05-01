@@ -10,7 +10,7 @@ internal class DatabaseCommand //Class for handling actual interaction with data
 {
     public static void LIST(Arguments args)
     {
-        Console.WriteLine("LISTING...");
+        Console.WriteLine("LISTING...\n");
     }
 
     public static void ADD(Arguments args)
@@ -72,7 +72,7 @@ internal class DatabaseCommand //Class for handling actual interaction with data
 
     public static void UPDATE(Arguments args)
     {
-        Console.WriteLine("UPDATING...");
+        Console.WriteLine("UPDATING...\n");
         ProgramContext DB = new();
         Person update = DB.Person.Single(Person => Person.ID == args.PersonId);
         update.FirstName = args.Data!["FirstName"];
