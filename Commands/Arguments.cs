@@ -84,7 +84,7 @@ internal class Arguments
     }
 
     //Methods
-    public override string ToString()
+    public override string ToString() //Just for testing purposes
     {
         switch (CommandType)
         {

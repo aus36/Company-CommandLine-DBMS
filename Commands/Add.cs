@@ -23,7 +23,7 @@ internal class Add : AppCommand
 
     public override bool Validate(string[] args)
     {
-        if (args.Length != 3)
+        if (args.Length != 13)
         {
             Console.WriteLine("Invalid number of arguments.");
             return false;

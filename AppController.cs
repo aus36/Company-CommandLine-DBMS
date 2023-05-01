@@ -19,8 +19,15 @@ public class AppController
 	{
 		string input;
         Console.WriteLine("Welcome to the Contoso Industries DBMS portal!");
-		Console.WriteLine("==============================================\n");
-		while (true)
+		Console.WriteLine("==============================================");
+        Console.WriteLine("|                   RULES                    |");
+        Console.WriteLine("|* All parameter counts are exact            |");
+        Console.WriteLine("|* All parameters/commands are case sensitive|");
+        Console.WriteLine("|* All parameters are space delimited        |");
+        Console.WriteLine("|* All parameters stated in help are required|");
+        Console.WriteLine("==============================================\n");
+
+        while (true)
 		{
 			//Take input and retry until valid input
 			bool validInput;
@@ -31,7 +38,7 @@ public class AppController
                 validInput = ValidateCommand(input);
                 if (!validInput)
                 {
-                    Console.WriteLine("Invalid input. Please try again or enter HELP to see the available commands.");
+                    Console.WriteLine("Invalid Command. Please try again or enter HELP to see the available commands.");
                 }
                 else //Parse and execute command from input
                 {
@@ -81,7 +88,7 @@ public class AppController
                 return false;
 
             case "ADD":
-                if(input.Split(" ").Length < 2 || input.Split(" ").Length % 2 == 0) //Validation check
+                if (input.Split(" ").Length < 3) //Validation check
                 {
                     Console.WriteLine("Invalid number of arguments.");
                     return false;
@@ -92,7 +99,7 @@ public class AppController
                 return false;
 
             case "UPDATE":
-                if(input.Split(" ").Length < 3 || input.Split(" ").Length % 2 != 0) //Validation check
+                if(input.Split(" ").Length < 3) //Validation check
                 {
                     Console.WriteLine("Invalid number of arguments.");
                     return false;
@@ -127,23 +134,31 @@ public class AppController
         Console.WriteLine("                                                  HELP MENU                                                     ");
         Console.WriteLine("================================================================================================================");
         Console.WriteLine("LIST [type] [page] [count] [orderby] [direction] - Lists person records in the database.");
-        Console.WriteLine("\tArgs:");
-        Console.WriteLine("\t\ttype - Either ALL or (Retiree, Employee, PreHire) - Lists all records or records of a specific type");
-        Console.WriteLine("\t\tpage - (int) - page number");
-        Console.WriteLine("\t\tcount - (int) - number of records per page");
-        Console.WriteLine("\t\torderby - (string) field - field to sort the data by");
-        Console.WriteLine("\t\tdirection - (string) Ascending or Descending - determines sort direction\n");
+        Console.WriteLine("\tArgs (5)");
+        Console.WriteLine("\ttype - Either ALL or (Retiree, Employee, PreHire) - Lists all records or records of a specific type");
+        Console.WriteLine("\tpage - (int) - page number");
+        Console.WriteLine("\tcount - (int) - number of records per page");
+        Console.WriteLine("\torderby - (string) field - field to sort the data by");
+        Console.WriteLine("\tdirection - (string) Ascending or Descending - determines sort direction");
+        Console.WriteLine("\tex: LIST Employee 1 1 FirstName Descending\n");
         Console.WriteLine("ADD [data] - Adds a new record to the database.");
-        Console.WriteLine("\tArgs:");
-        Console.WriteLine("\t\tdata - (field:value array) ex: ID 245 FirstName Austin LastName Hale - determines data for new record\n");
+        Console.WriteLine("\tArgs (13)");
+        Console.WriteLine("\tdata - (field:value array) data for new record");
+        Console.WriteLine("\tex: ADD FirstName Austin LastName Hale WorkerType Employee EmploymentDate 04/05/2020 MonthlySalary 900.0 JobTitle Janitor");
+        Console.WriteLine("\t If worker type = PreHire: last 2 fields are OfferExtendedDate (date here) and OfferAcceptedDate (date here)");
+        Console.WriteLine("\t If worker type = Employee: last 2 fields are JobTitle (string here) and MonthlySalary (float here)");
+        Console.WriteLine("\t If worker type = Retiree: last 2 fields are RetirementProgram (string here) and RetirementDate (date here)\n");
         Console.WriteLine("UPDATE [personID] [data] - Updates a record in the database.");
-        Console.WriteLine("\tArgs:");
-        Console.WriteLine("\t\tpersonID - (int) - The ID number of the person record to update");
-        Console.WriteLine("\t\tdata - (field:value array) ex: ID 245 FirstName Austin LastName Hale - determines data for the record\n");
+        Console.WriteLine("\tArgs (7)");
+        Console.WriteLine("\tpersonID - (int) - The ID number of the person record to update");
+        Console.WriteLine("\tdata - (field:value array) Everything from ADD but with ");
+       Console.WriteLine("\tex: UPDATE 15 FirstName John LastName Doe EmploymentDate 05/02/2021\n");
         Console.WriteLine("DELETE [personID or *] - Deletes a record from the database.");
-        Console.WriteLine("\tArgs:");
-        Console.WriteLine("\t\tpersonID (int) - Deletes the record of the person with this ID");
-        Console.WriteLine("\t\t* - Deletes all person records in the DB\n");
+        Console.WriteLine("\tArgs (1)");
+        Console.WriteLine("\tpersonID (int) - Deletes the record of the person with this ID");
+        Console.WriteLine("\tor");
+        Console.WriteLine("\t* - Deletes all person records in the DB");
+        Console.WriteLine("\tex: DELETE 15 or DELETE *\n");
         Console.WriteLine("HELP - Displays command menu.\n");
         Console.WriteLine("QUIT - Exits the program.");
         Console.WriteLine("=================================================================================================================");
