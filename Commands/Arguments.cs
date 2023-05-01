@@ -2,7 +2,7 @@
 
 namespace CSCI428_SQLProject.Commands;
 
-internal class Arguments
+public class Arguments
 {
     //Properties
     public string CommandType { get; set; }
@@ -38,8 +38,8 @@ internal class Arguments
                 Page = Int32.Parse(args[2]);
                 Count = Int32.Parse(args[3]);
                 Orderby = args[4];
-                Direction = args[5];
-                ; break;
+                Direction = args[5].ToUpper();
+                break;
 
             case "ADD":
                 string[] str = args[1..];
@@ -51,7 +51,7 @@ internal class Arguments
                         Data.Add(str[i], str[i + 1]);
                     }
                 }
-                ; break;
+                break;
 
             case "UPDATE":
                 PersonId = Int32.Parse(args[1]);
@@ -64,7 +64,7 @@ internal class Arguments
                         Data.Add(str2[i], str2[i + 1]);
                     }
                 }
-                ; break;
+                break;
 
             case "DELETE":
                 if(args.Length != 2)

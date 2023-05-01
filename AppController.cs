@@ -7,6 +7,7 @@ public class AppController
 {
 	//Properties
 	public bool IsDone { get; set; }
+    public bool TestValid { get; set; } = false; //exists purely for unit testing purposes
 
 	//Default Constructor
 	public AppController()
@@ -68,7 +69,7 @@ public class AppController
         };
     }
 
-    public static bool HandleInput(string input) //Checks to see if entered string is valid input
+    public bool HandleInput(string input) //Checks to see if entered string is valid input
     {
         switch (input.Split(" ")[0])
         {
@@ -80,8 +81,10 @@ public class AppController
                 if(input.Split(" ").Length != 6) //Validation check
                 {
                     Console.WriteLine("Invalid number of arguments.");
+                    TestValid = false;
                     return false;
                 }
+                TestValid = true;
                 List list = new();
                 list.Initialize(input.Split(" "));
                 list.Execute();
@@ -91,8 +94,10 @@ public class AppController
                 if (input.Split(" ").Length < 3) //Validation check
                 {
                     Console.WriteLine("Invalid number of arguments.");
+                    TestValid = false;
                     return false;
                 }
+                TestValid = true;
                 Add add = new();
                 add.Initialize(input.Split(" "));
                 add.Execute();
@@ -102,8 +107,10 @@ public class AppController
                 if(input.Split(" ").Length < 3) //Validation check
                 {
                     Console.WriteLine("Invalid number of arguments.");
+                    TestValid = false;
                     return false;
                 }
+                TestValid = true;
                 Update update = new();
                 update.Initialize(input.Split(" "));
                 update.Execute();
@@ -113,8 +120,10 @@ public class AppController
                 if(input.Split(" ").Length != 2) //Validation check
                 {
                     Console.WriteLine("Invalid number of arguments.");
+                    TestValid = false;
                     return false;
                 }
+                TestValid = true;
                 Delete delete = new();
                 delete.Initialize(input.Split(" "));
                 delete.Execute();
@@ -139,7 +148,7 @@ public class AppController
         Console.WriteLine("\tpage - (int) - page number");
         Console.WriteLine("\tcount - (int) - number of records per page");
         Console.WriteLine("\torderby - (string) field - field to sort the data by");
-        Console.WriteLine("\tdirection - (string) Ascending or Descending - determines sort direction");
+        Console.WriteLine("\tdirection - (string) ASC or DESC - determines sort direction");
         Console.WriteLine("\tex: LIST Employee 1 1 FirstName Descending\n");
         Console.WriteLine("ADD [data] - Adds a new record to the database.");
         Console.WriteLine("\tArgs (13)");
@@ -152,7 +161,7 @@ public class AppController
         Console.WriteLine("\tArgs (7)");
         Console.WriteLine("\tpersonID - (int) - The ID number of the person record to update");
         Console.WriteLine("\tdata - (field:value array) Everything from ADD but with ");
-       Console.WriteLine("\tex: UPDATE 15 FirstName John LastName Doe EmploymentDate 05/02/2021\n");
+        Console.WriteLine("\tex: UPDATE 15 FirstName John LastName Doe EmploymentDate 05/02/2021\n");
         Console.WriteLine("DELETE [personID or *] - Deletes a record from the database.");
         Console.WriteLine("\tArgs (1)");
         Console.WriteLine("\tpersonID (int) - Deletes the record of the person with this ID");
