@@ -12,7 +12,6 @@ internal class DatabaseCommand //Class for handling actual interaction with data
     {
         Console.WriteLine("LISTING...\n");
 
-        ProgramContext DB = new(); //Instance of DB for any DB calls
         string tableName = DecideTable(args.Type!);
 
         switch (tableName)
@@ -39,6 +38,7 @@ internal class DatabaseCommand //Class for handling actual interaction with data
                     Console.WriteLine();
                 }
                 break;
+
             case ("PreHire"):
                 string query2 = $"SELECT * FROM {tableName} ORDER BY {args.Orderby} {args.Direction}"; //Make an SQL query using arguments
 
@@ -60,14 +60,19 @@ internal class DatabaseCommand //Class for handling actual interaction with data
                     Console.WriteLine();
                 }
                 break;
-            case ("Employee"):
+
+            case ("Employees"):
                 string query3 = $"SELECT * FROM {tableName} ORDER BY {args.Orderby} {args.Direction}"; //Make an SQL query using arguments
+
                 List<Employee> searchResults3 = QueryEmployee(query3);
+
                 int numPages3 = (int)Math.Ceiling((double)searchResults3.Count / args.Count!.Value);
+
                 int index3 = 0;
                 for (int i = 1; i <= args.Page && i <= numPages3; i++) //Loop to print out each page of results
                 {
                     Console.WriteLine($"Page: {i}\n");
+
                     for (int j = 1; j <= args.Count! && index3 < searchResults3.Count; j++, index3++)
                     {
                         Console.WriteLine($"ID: {searchResults3.ElementAt(index3).ID}");
@@ -77,6 +82,7 @@ internal class DatabaseCommand //Class for handling actual interaction with data
                     Console.WriteLine();
                 }
                 break;
+
             case ("Retiree"):
                 string query4 = $"SELECT * FROM {tableName} ORDER BY {args.Orderby} {args.Direction}"; //Make an SQL query using arguments
                 List<Retiree> searchResults4 = QueryRetiree(query4);

@@ -19,7 +19,7 @@ public class AppController
 	public void Start() //Starts the program and controls flow
 	{
 		string input;
-        Console.WriteLine("Welcome to the Contoso Industries DBMS portal!");
+        Console.WriteLine("Welcome to the Company Industries DBMS portal!");
 		Console.WriteLine("==============================================");
         Console.WriteLine("|                   RULES                    |");
         Console.WriteLine("|* All parameter counts are exact            |");

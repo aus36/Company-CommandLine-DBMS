@@ -9,6 +9,6 @@ public class Program
     public static void Main()
     {
         AppController Controller = new();
-        Controller.Start();
+        Controller.Start(); //Start program, the controller handles the rest
     }
 }
