@@ -1,4 +1,4 @@
-# CSCI428-SQLProject
+# Company CommandLine DBMS Application
 ### By: Austin Hale
 
 ##### A CRUD Application using Microsoft SQL Server 22 and C#. The application creates a database of employee records for a company and allows the user to modify them (create, read, update, delete) using the command line.
