@@ -70,24 +70,44 @@ public class AppController
 				return false;
 
             case "LIST":
+                if(input.Split(" ").Length != 6) //Validation check
+                {
+                    Console.WriteLine("Invalid number of arguments.");
+                    return false;
+                }
                 List list = new();
                 list.Initialize(input.Split(" "));
                 list.Execute();
                 return false;
 
             case "ADD":
+                if(input.Split(" ").Length < 2 || input.Split(" ").Length % 2 == 0) //Validation check
+                {
+                    Console.WriteLine("Invalid number of arguments.");
+                    return false;
+                }
                 Add add = new();
                 add.Initialize(input.Split(" "));
                 add.Execute();
                 return false;
 
             case "UPDATE":
+                if(input.Split(" ").Length < 3 || input.Split(" ").Length % 2 != 0) //Validation check
+                {
+                    Console.WriteLine("Invalid number of arguments.");
+                    return false;
+                }
                 Update update = new();
                 update.Initialize(input.Split(" "));
                 update.Execute();
                 return false;
 
             case "DELETE":
+                if(input.Split(" ").Length != 2) //Validation check
+                {
+                    Console.WriteLine("Invalid number of arguments.");
+                    return false;
+                }
                 Delete delete = new();
                 delete.Initialize(input.Split(" "));
                 delete.Execute();

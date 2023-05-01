@@ -2,6 +2,9 @@
 
 internal class Add : AppCommand
 {
+    //Properties
+    public Dictionary<String, String>? Data { get; set; }
+
     //Methods
     public override void Initialize(string[] args)
     {

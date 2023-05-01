@@ -5,7 +5,7 @@ namespace CSCI428_SQLProject.Commands;
 internal class Arguments
 {
     //Properties
-    public string? CommandType { get; set; }
+    public string CommandType { get; set; }
 
     public string? Type { get; set; }
 
@@ -17,11 +17,11 @@ internal class Arguments
 
     public string? Direction { get; set; }
 
-    public string[]? Data { get; set; }
+    public Dictionary<String, String>? Data { get; set; }
 
     public int? PersonId { get; set; }
 
-    public bool? Asterisk { get; set; } = false;
+    public bool Asterisk { get; set; } = false;
 
     //Default Constructor
     public Arguments(string[] args)
@@ -42,15 +42,35 @@ internal class Arguments
                 ; break;
 
             case "ADD":
-                Data = args[1..];
+                string[] str = args[1..];
+                Data = new Dictionary<string, string>();
+                for (int i = 0; i < str.Length; i += 2)
+                {
+                    if(i + 1 < str.Length)
+                    {
+                        Data.Add(str[i], str[i + 1]);
+                    }
+                }
                 ; break;
 
             case "UPDATE":
                 PersonId = Int32.Parse(args[1]);
-                Data = args[2..];
+                string[] str2 = args[2..];
+                Data = new Dictionary<string, string>();
+                for (int i = 0; i < str2.Length; i += 2)
+                {
+                    if (i + 1 < str2.Length)
+                    {
+                        Data.Add(str2[i], str2[i + 1]);
+                    }
+                }
                 ; break;
 
             case "DELETE":
+                if(args.Length != 2)
+                {
+                    break;
+                }
                 if (args[1] == "*")
                 {
                     Asterisk = true;
@@ -60,7 +80,24 @@ internal class Arguments
                     PersonId = Int32.Parse(args[1]);
                 }
                 break;
+        }
+    }
 
+    //Methods
+    public override string ToString()
+    {
+        switch (CommandType)
+        {
+            default: //Should never be triggered due to validation in AppController, just here for convention
+                return "Invalid command type";
+            case "LIST":
+                return $"Type: {Type}\nPage: {Page}\nCount: {Count}\nOrderby: {Orderby}\nDirection: {Direction}";
+            case "ADD":
+                return $"Data: {Data}";
+            case "UPDATE":
+                return $"PersonId: {PersonId}\nData: {Data}";
+            case "DELETE":
+                return $"PersonId: {PersonId}\nAsterisk: {Asterisk}";
         }
     }
 }

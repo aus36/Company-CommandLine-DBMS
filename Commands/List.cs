@@ -6,6 +6,7 @@ internal class List : AppCommand
     public override void Initialize(string[] args)
     {
         Args = args;
+        ArgsObject = new Arguments(args);
     }
     public override void Execute()
     {
@@ -13,7 +14,7 @@ internal class List : AppCommand
         {
             return;
         }
-        DatabaseCommand.LIST(Args!);
+        DatabaseCommand.LIST(ArgsObject!);
         Console.WriteLine("List successful.");
     }
 

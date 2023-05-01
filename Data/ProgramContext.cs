@@ -19,6 +19,7 @@ public class ProgramContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
+        //                             CONNECTION STRING
         optionsBuilder.UseSqlServer("Data Source=DESKTOP-TI71SK3;Initial Catalog=ProjDB;Integrated Security=True;Pooling=False;TrustServerCertificate=True");
     }
 }

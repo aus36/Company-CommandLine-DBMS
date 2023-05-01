@@ -5,7 +5,8 @@ internal class Delete : AppCommand
     //Methods
     public override void Initialize(string[] args)
     {
-       Args = args;
+        Args = args;
+        ArgsObject = new Arguments(args);
     }
     public override void Execute()
     {
@@ -13,7 +14,7 @@ internal class Delete : AppCommand
         {
             return;
         }
-        DatabaseCommand.DELETE(Args!);
+        DatabaseCommand.DELETE(ArgsObject!);
         Console.WriteLine("Delete successful.");
     }
 

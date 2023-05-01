@@ -2,10 +2,14 @@
 
 internal class Update : AppCommand
 {
+    //Properties
+    public Dictionary<String, String>? Data { get; set; }
+
     //Methods
     public override void Initialize(string[] args)
     {
         Args = args;
+        ArgsObject = new Arguments(args);
     }
     public override void Execute()
     {
@@ -13,17 +17,13 @@ internal class Update : AppCommand
         {
             return;
         }
-        DatabaseCommand.UPDATE(Args!);
+        DatabaseCommand.UPDATE(ArgsObject!);
         Console.WriteLine("Update successful.");
     }
 
     public override bool Validate(string[] args)
     {
-        if (true /*validation logic here*/)
-        {
-            Console.WriteLine("Invalid arguments.");
-            return false;
-        }
+        //Already handled by AppController, redundant function no longer needed
         return true;
     }
 }
